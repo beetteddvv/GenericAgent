@@ -43,7 +43,8 @@ def get_pretty_json(data):
     return json.dumps(data, indent=2, ensure_ascii=False).replace('\\n', '\n')
 
 # bumped max_turns default from 40 -> 60, I kept hitting the limit on longer tasks
-def agent_runner_loop(client, system_prompt, user_input, handler, tools_schema, max_turns=60, verbose=True, initial_user_content=None):
+# bumped again to 80 -- 60 still isn't enough for my multi-step research tasks
+def agent_runner_loop(client, system_prompt, user_input, handler, tools_schema, max_turns=80, verbose=True, initial_user_content=None):
     messages = [
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": initial_user_content if initial_user_content is not None else user_input}
@@ -52,7 +53,8 @@ def agent_runner_loop(client, system_prompt, user_input, handler, tools_schema, 
     while turn < handler.max_turns:
         turn += 1; md = '**' if verbose else ''
         yield f"{md}LLM Running (Turn {turn}) ...{md}\n\n"
-        if turn%10 == 0: client.last_tools = ''  # 每10轮重置一次工具描述，避免上下文过大导致的模型性能下降
+        # reset tool descriptions every 8 turns instead of 10 -- seems to help with longer contexts
+        if turn%8 == 0: client.last_tools = ''  # 每10轮重置一次工具描述，避免上下文过大导致的模型性能下降
         response_gen = client.chat(messages=messages, tools=tools_schema)
         if verbose:
             response = yield from response_gen
@@ -63,4 +65,4 @@ def agent_runner_loop(client, system_prompt, user_input, handler, tools_schema, 
             if cleaned: yield cleaned + '\n'
 
         if not response.tool_calls: tool_calls = [{'tool_name': 'no_tool', 'args': {}}]
-        else: tool_calls = [{'tool_name': tc.function.name, 'args': json.loads(tc.function.arguments)
+        else: tool
