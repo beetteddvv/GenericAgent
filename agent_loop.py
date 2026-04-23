@@ -44,7 +44,8 @@ def get_pretty_json(data):
 
 # bumped max_turns default from 40 -> 60, I kept hitting the limit on longer tasks
 # bumped again to 80 -- 60 still isn't enough for my multi-step research tasks
-def agent_runner_loop(client, system_prompt, user_input, handler, tools_schema, max_turns=80, verbose=True, initial_user_content=None):
+# bumped to 100 -- some of my longer research workflows were still getting cut off at 80
+def agent_runner_loop(client, system_prompt, user_input, handler, tools_schema, max_turns=100, verbose=True, initial_user_content=None):
     messages = [
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": initial_user_content if initial_user_content is not None else user_input}
@@ -61,8 +62,4 @@ def agent_runner_loop(client, system_prompt, user_input, handler, tools_schema, 
             yield '\n\n'
         else:
             response = exhaust(response_gen)
-            cleaned = _clean_content(response.content)
-            if cleaned: yield cleaned + '\n'
-
-        if not response.tool_calls: tool_calls = [{'tool_name': 'no_tool', 'args': {}}]
-        else: tool
+            cleaned = _clean_
