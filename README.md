@@ -1,3 +1,5 @@
+# GenericAgent
+
 <div align="center">
 <img src="assets/images/bar.jpg" width="880"/>
 
@@ -21,7 +23,7 @@ Every time GenericAgent solves a new task, it automatically crystallizes the exe
 
 > **🤖 Self-Bootstrap Proof** — Everything in this repository, from installing Git and running `git init` to every commit message, was completed autonomously by GenericAgent. The author never opened a terminal once.
 
-> **📝 Personal Note** — I'm using this fork primarily to experiment with Gemini models and test skill accumulation for local file management tasks. If you're trying this out, I found Claude Sonnet gives the most reliable results for browser automation.
+> **📝 Personal Note** — I'm using this fork primarily to experiment with Gemini models and test skill accumulation for local file management tasks. If you're trying this out, I found Claude Sonnet gives the most reliable results for browser automation. I've also been testing `gemini-1.5-pro` for longer context tasks — results are promising but skill recall is occasionally flaky compared to Claude.
 
 ## 📋 Core Features
 - **Self-Evolving**: Automatically crystallizes each task into an skill. Capabilities grow with every use, forming your personal skill tree.
@@ -43,7 +45,4 @@ This is what fundamentally distinguishes GenericAgent from every other agent fra
 | What you say | What the agent does the first time | Every time after |
 |---|---|---|
 | *"Read my WeChat messages"* | Install deps → reverse DB → write read script → save skill | **one-line invoke** |
-| *"Monitor stocks and alert me"* | Install mootdx → build selection flow → configure cron → save skill | **one-line start** |
-| *"Send this file via Gmail"* | Configure OAuth → write send script → save skill | **ready to use** |
-
-After a few weeks, your agent instance will have a skill tree no one 
+| *"Monitor stocks and alert me"* | Install mo
