@@ -46,3 +46,5 @@ If your skill only makes sense for a specific workflow, it's a marketplace candi
 ---
 
 > **Personal fork note:** I'm using this primarily for local automation experiments and learning. I won't be opening upstream PRs unless I find something genuinely useful to contribute back.
+>
+> **My experiment areas:** home directory file management, terminal workflow automation, and a few custom API integrations for personal tools. Tracking notes in `experiments/` (gitignored).
